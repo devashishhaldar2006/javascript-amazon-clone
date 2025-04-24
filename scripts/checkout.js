@@ -13,10 +13,14 @@ cart.forEach((cartItem)=>{
       matchingProduct=product;
     }
   });
+
+  if (!matchingProduct) {
+    console.warn(`Product with ID ${productId} not found in products array`);
+    return; // Skip this iteration of the loop
+  }
   cartSummaryHTML+=
   `
-  <div class="cart-item-container 
-    js-cart-item-container-${productId}">
+  <div class="cart-item-container js-cart-item-container-${matchingProduct.id}">
       <div class="delivery-date">
         Delivery date: Tuesday, June 21
       </div>
@@ -105,5 +109,6 @@ document.querySelectorAll('.js-delete-link')
         `.js-cart-item-container-${productId}`
       );
       container.remove();
+      
   });
  });
